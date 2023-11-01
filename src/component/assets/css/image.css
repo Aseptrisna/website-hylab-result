@@ -1,0 +1,189 @@
+/* CSS Kustom */
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .list-group-item {
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background-color: #f8f9fa;
+  }
+  
+/* imageList.css */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  max-width: 80%;
+  height: auto;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.card-time {
+  font-size: 1rem;
+  color: #777;
+  text-align: center;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #777;
+ 
+
+}
+/* Pagination styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #186F65;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+/* Loading indicator styles */
+/* Loading indicator styles */
+.loading {
+  text-align: center;
+  font-size: 24px;
+  color: #007bff; /* Blue color */
+  margin: 20px 0;
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #186F65;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 3s linear infinite;
+
+  /* Center the spinner horizontally and vertically */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Active pagination button style */
+.pagination button.active {
+  background-color: #B5CB99; /* Change the color of the active button */
+  color: #fff; /* Text color for the active button */
+}
+/* Footer styles */
+/* Footer styles */
+.footer {
+  background-color: #fff;
+  color: #186F65;
+  text-align: center;
+  padding: 10px;
+  margin: top 50px;
+}
+
+/* Add flexbox to push the footer to the bottom */
+.main-content {
+  flex: 1;
+}
+
+/* Button styles */
+.copy-button {
+  background-color: #186F65;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.copy-button:hover {
+  background-color: #0056b3;
+}
+
+/* Add a style for the 'copied' state */
+.copy-button.copied {
+  background-color: #28a745; /* Green color for success */
+  cursor: default;
+}
+
+/* Style the button text when it's in the 'copied' state */
+.copy-button.copied:after {
+  content: '';
+}
+
+/* Button styles */
+.reload-button {
+  background-color: #186F65;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 1px;
+  margin-bottom: 10px;
+  justify-content: right;
+  align-content: right;
+}
+
+.reload-button:hover {
+  background-color: #28a745;
+}
+/* styles.css */
+.dive-center {
+  /* border: 1px solid #ddd; */
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+  max-width: 700px;
+  align-content: center;
+  justify-content: left;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+  background-color: #f9f9f9;
+}
+
+.center-image {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+p {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+strong {
+  font-weight: bold;
+}
