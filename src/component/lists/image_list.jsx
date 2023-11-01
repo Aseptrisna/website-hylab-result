@@ -4,12 +4,12 @@ import Service from "../service";
 import Icon from "../assets/image/sand-clock.png";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Col, Row } from "react-bootstrap";
+import { ButtonGroup, Col, Row } from "react-bootstrap";
 
 function ImageList() {
   const [imageData, setImageData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [imagesPerPage] = useState(15);
+  const [imagesPerPage] = useState(9);
   const [totalPages, setTotalPages] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -21,24 +21,20 @@ function ImageList() {
     setTimeout(() => {
       getData(data);
     }, 1000);
-  }, []);
+  }, [currentPage]);
 
   const getData = async (data) => {
     Service.getData(data)
       .then((data) => {
         setLoading(false);
         setImageData(data.data.datahasil);
-        // setTotalPages(data.data.totalPages);
-        console.log(data.data.datahasil);
+        setTotalPages(data.data.totalPages);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
         setLoading(true);
       });
   };
-
-  // console.log(totalPages)
-  // console.log(imagesPerPage)
 
   const paginate = (pageNumber) => {
     setLoading(true);
@@ -49,7 +45,7 @@ function ImageList() {
     };
     setTimeout(() => {
       getData(data);
-    }, 2000);
+    }, 1000);
   };
 
   const copyToClipboard = async (text, index) => {
@@ -94,20 +90,22 @@ function ImageList() {
         </div>
       ) : (
         <div className="container">
-           <button
+          <button
             className="reload-button"
             onClick={() => window.location.reload()}
           >
             Reload
           </button>
-       
+
           <br></br>
           <div className="row">
             {imageData.map((image, index) => (
               <div className="col-md-4" key={index}>
                 <div className="card mb-4" border="warning">
                   <img
-                    src={'https://hylab.pptik.id/data/raw_data/'+image.file_name}
+                    src={
+                      "https://hylab.pptik.id/data/raw_data/" + image.file_name
+                    }
                     className="card-img-top img-fluid"
                     alt={image.file_name}
                     style={{
@@ -121,51 +119,37 @@ function ImageList() {
                     }}
                   />
                   <div className="card-body">
-                    {/* <h5 className="card-title">
-                      ID RFID:{image.guid}
-                      <button
-                        className={`copy-button ${image.unit ? "copied" : ""}`}
-                        onClick={() => copyToClipboard(image.guid, index)}
-                      >
-                        {image.unit ? "Copied!" : "Copy"}
-                      </button>
-                    </h5> */}
                     <h5 className="card-title">{image.name}</h5>
                     <p className="card-time">{image.time}</p>
-                    {/* <h5 className="card-time">{image.user.UNIT}</h5> */}
-                    {/* <Card className="text-center">
-                      <Card.Header>Featured</Card.Header>
-                      <Card.Body>
-                        <Card.Title>Special title treatment</Card.Title>
-                        <Card.Text>
-                          With supporting text below as a natural lead-in to
-                          additional content.
-                        </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
-                      </Card.Body>
-                      <Card.Footer className="text-muted">
-                        2 days ago
-                      </Card.Footer>
-                    </Card> */}
                   </div>
                 </div>
               </div>
             ))}
           </div>
           <div className="pagination">
-            {Array.from(
-              { length: Math.ceil(totalPages / imagesPerPage + 1) },
-              (_, index) => (
-                <div key={index}>
-                  <button
-                    className={index + 1 === currentPage ? "active" : ""}
-                    onClick={() => paginate(index + 1)}
-                  >
-                    {index + 1}
-                  </button>
-                </div>
-              )
-            )}
+            <ButtonGroup>
+              <Button
+                onClick={() => paginate(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </Button>
+              {Array.from({ length: totalPages }).map((_, index) => (
+                <Button
+                  key={index}
+                  onClick={() => paginate(index + 1)}
+                  active={currentPage === index + 1}
+                >
+                  {index + 1}
+                </Button>
+              ))}
+              <Button
+                onClick={() => paginate(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              >
+                Next
+              </Button>
+            </ButtonGroup>
           </div>
           <div className="footer">
             <p>&copy; 2023 PPTIK</p>
